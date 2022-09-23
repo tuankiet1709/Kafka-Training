@@ -13,6 +13,7 @@ export class AppController {
 
   @Post()
   createOrder(@Body() createOrderRequest: CreateOrderRequest) {
+    console.log(createOrderRequest);
     this.appService.createOrder(createOrderRequest);
   }
 }

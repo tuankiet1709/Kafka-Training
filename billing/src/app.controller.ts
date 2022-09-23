@@ -1,7 +1,9 @@
 import { readAVSC, SchemaRegistry } from '@kafkajs/confluent-schema-registry';
 import { Controller, Get, Inject } from '@nestjs/common';
 import { ClientKafka, ClientProxy, EventPattern } from '@nestjs/microservices';
+import { SubscribeMessage } from '@nestjs/websockets';
 import { lastValueFrom } from 'rxjs';
+import { MessageGateWay } from './app.gateway';
 import { AppService } from './app.service';
 import { OrderCreatedEvent } from './order-created.event';
 
@@ -21,7 +23,7 @@ export class AppController {
     private readonly appService: AppService,
     @Inject('AUTH_SERVICE') private readonly authClient: ClientKafka,
     @Inject('SCHEMA_REGISTRY_SERVICE')
-    private readonly schemaRegistryClient: ClientProxy,
+    private readonly schemaRegistryClient: ClientProxy
   ) {}
 
   @Get()

@@ -77,7 +77,13 @@ npm i
 ```
 npm run start:dev
 ```
+## Run UI
+Open file index.html with a browser
 ## Test app
+### Use UI
+1. Input UserId (123 or 345) and Price (any number)
+2. Press Send button
+### Use PostMan (Without UI)
 Use postman and post a json to localhost:3000 with format:
 ```json
 {

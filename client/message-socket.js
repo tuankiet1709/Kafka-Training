@@ -1,14 +1,20 @@
-const socket = io('http://localhost:3000');
+const socket = io("http://localhost:3000", { transports: ['websocket', 'polling', 'flashsocket'] })
+const socket2 = io("http://localhost:3002", { transports: ['websocket', 'polling', 'flashsocket'] })
 
-const message = document.getElementById('message');
+const user = document.getElementById('user');
+const price = document.getElementById('price');
 const messages = document.getElementById('messages');
 
 const handleSubmitNewMessage = () => {
-	socket.emit('message', { data: message.value });
+	socket.emit('message', { 
+		userId: user.value,
+		price: parseFloat(price.value)
+	});
 };
 
-socket.on('message', ({ data }) => {
-	handleSubmitNewMessage(data);
+socket2.on('message2', (data) => {
+	console.log(data);
+	handleNewMessage(data);
 });
 
 const handleNewMessage = (message) => {
